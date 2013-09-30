@@ -1,6 +1,6 @@
-require 'captain_hook/app'
+require 'right_hook/app'
 
-class Responder < CaptainHook::App
+class Responder < RightHook::App
   def on_pull_request(owner, repo_name, action, number, pull_request_json)
     comment_like_a_parrot(owner, repo_name, number) if action == 'opened'
   end
@@ -11,6 +11,6 @@ class Responder < CaptainHook::App
 
   def comment_like_a_parrot(owner, repo_name, number)
     message = 'Squawk! Thank you for the pull request. Squawk!'
-    CaptainHook::Commenter.new(ENV['RESPONDER_TOKEN']).comment_on_issue(owner, repo_name, number, message)
+    RightHook::Commenter.new(ENV['RESPONDER_TOKEN']).comment_on_issue(owner, repo_name, number, message)
   end
 end

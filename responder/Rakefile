@@ -12,13 +12,13 @@ task :enable_hook do
   if ENV['RESPONDER_TOKEN'].to_s.size > 0
     token = ENV.fetch('RESPONDER_TOKEN').to_s
   else
-    authenticator = CaptainHook::Authenticator.interactive_build(username)
+    authenticator = RightHook::Authenticator.interactive_build(username)
     token = authenticator.create_authorization('Auth for Responder Hookbook')
   end
   puts "Your token is: #{token}"
   puts "export RESPONDER_TOKEN=#{token} to skip entering a password next time."
 
-  subscriber = CaptainHook::Subscriber.new(
+  subscriber = RightHook::Subscriber.new(
     base_url: base_url,
     oauth_token: token,
     owner: owner,
