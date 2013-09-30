@@ -1,3 +1,6 @@
+require 'righthook/authenticator'
+require 'righthook/subscriber'
+
 desc 'Enable the hook for a given repo (authenticates with a commenter)'
 task :enable_hook do
   base_url = ENV.fetch('RESPONDER_BASE_URL') { raise 'Must set RESPONDER_BASE_URL' }
