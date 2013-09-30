@@ -1,5 +1,6 @@
 require 'right_hook/app'
 require 'right_hook/event'
+require 'right_hook/logger'
 require 'logger'
 
 RightHook.logger = Logger.new(STDERR)
