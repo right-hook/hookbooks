@@ -1,9 +1,13 @@
 Bundler.setup
+require 'logger'
 require 'right_hook/authenticator'
+require 'right_hook/event'
+require 'right_hook/logger'
 require 'right_hook/subscriber'
 
 desc 'Enable the hook for a given repo (authenticates with a commenter)'
 task :enable_hook do
+  RightHook.logger = Logger.new(STDOUT)
   base_url = ENV.fetch('RESPONDER_BASE_URL') { raise 'Must set RESPONDER_BASE_URL' }
   secret = ENV.fetch('RESPONDER_SECRET') { raise 'Must set RESPONDER_SECRET' }
 
@@ -17,10 +21,10 @@ task :enable_hook do
     token = ENV.fetch('RESPONDER_TOKEN').to_s
   else
     authenticator = RightHook::Authenticator.interactive_build(username)
-    token = authenticator.create_authorization('Auth for Responder Hookbook')
+    token = authenticator.find_or_create_authorization_by_note('Auth for Responder Hookbook')
+    puts "Your token is: #{token}"
+    puts "export RESPONDER_TOKEN=#{token} to skip entering a password next time."
   end
-  puts "Your token is: #{token}"
-  puts "export RESPONDER_TOKEN=#{token} to skip entering a password next time."
 
   subscriber = RightHook::Subscriber.new(
     base_url: base_url,
@@ -29,7 +33,7 @@ task :enable_hook do
   )
 
   unless subscriber.subscribe(
-    event_type: 'pull_request',
+    event_type: RightHook::Event::PULL_REQUEST,
     repo_name: repo_name,
     secret: secret
   )
@@ -37,7 +41,7 @@ task :enable_hook do
   end
 
   unless subscriber.subscribe(
-    event_type: 'issue',
+    event_type: RightHook::Event::ISSUE,
     repo_name: repo_name,
     secret: secret
   )
