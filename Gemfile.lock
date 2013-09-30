@@ -1,11 +1,3 @@
-PATH
-  remote: /Users/mr/workspace/captain_hook
-  specs:
-    captain_hook (0.0.1)
-      httparty (~> 0.11.0)
-      octokit (~> 2.2)
-      sinatra (~> 1.4)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -23,6 +15,10 @@ GEM
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
+    right_hook (0.2.0)
+      httparty (~> 0.11.0)
+      octokit (~> 2.2)
+      sinatra (~> 1.4)
     sawyer (0.5.1)
       addressable (~> 2.3.5)
       faraday (~> 0.8, < 0.10)
@@ -36,4 +32,4 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  captain_hook!
+  right_hook (~> 0.2.0)
