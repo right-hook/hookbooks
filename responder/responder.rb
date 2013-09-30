@@ -1,4 +1,8 @@
 require 'right_hook/app'
+require 'right_hook/event'
+require 'logger'
+
+RightHook.logger = Logger.new(STDERR)
 
 class Responder < RightHook::App
   def on_pull_request(owner, repo_name, action, number, pull_request_json)
