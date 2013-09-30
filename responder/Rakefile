@@ -1,0 +1,42 @@
+desc 'Enable the hook for a given repo (authenticates with a commenter)'
+task :enable_hook do
+  base_url = ENV.fetch('RESPONDER_BASE_URL') { raise 'Must set RESPONDER_BASE_URL' }
+  secret = ENV.fetch('RESPONDER_SECRET') { raise 'Must set RESPONDER_SECRET' }
+
+  puts 'Who is the owner of the target repository? (e.g. octocat/Spoon-Knife => octocat)'
+  owner = gets.chomp
+  puts 'What is the name of the target repository? (e.g. octocat/Spoon-Knife => Spoon-Knife)'
+  repo_name = gets.chomp
+  puts 'What is the GitHub username for the responder bot?'
+  username = gets.chomp
+  if ENV['RESPONDER_TOKEN'].to_s.size > 0
+    token = ENV.fetch('RESPONDER_TOKEN').to_s
+  else
+    authenticator = CaptainHook::Authenticator.interactive_build(username)
+    token = authenticator.create_authorization('Auth for Responder Hookbook')
+  end
+  puts "Your token is: #{token}"
+  puts "export RESPONDER_TOKEN=#{token} to skip entering a password next time."
+
+  subscriber = CaptainHook::Subscriber.new(
+    base_url: base_url,
+    oauth_token: token,
+    owner: owner,
+  )
+
+  unless subscriber.subscribe(
+    event_type: 'pull_request',
+    repo_name: repo_name,
+    secret: secret
+  )
+    raise "Failed to subscribe to pull requests for #{owner}/#{repo_name} for account #{username}"
+  end
+
+  unless subscriber.subscribe(
+    event_type: 'issue',
+    repo_name: repo_name,
+    secret: secret
+  )
+    raise "Failed to subscribe to issues for #{owner}/#{repo_name} for account #{username}"
+  end
+end
