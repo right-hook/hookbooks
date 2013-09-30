@@ -1,3 +1,4 @@
 source 'https://rubygems.org'
 
-gem 'right_hook', '~> 0.2.0'
+gem 'right_hook', '~> 0.2.2'
+gem 'rake'

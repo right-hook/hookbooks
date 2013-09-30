@@ -1,5 +1,6 @@
-require 'righthook/authenticator'
-require 'righthook/subscriber'
+Bundler.setup
+require 'right_hook/authenticator'
+require 'right_hook/subscriber'
 
 desc 'Enable the hook for a given repo (authenticates with a commenter)'
 task :enable_hook do
