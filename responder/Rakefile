@@ -4,11 +4,11 @@ task :enable_hook do
   secret = ENV.fetch('RESPONDER_SECRET') { raise 'Must set RESPONDER_SECRET' }
 
   puts 'Who is the owner of the target repository? (e.g. octocat/Spoon-Knife => octocat)'
-  owner = gets.chomp
+  owner = $stdin.gets.chomp
   puts 'What is the name of the target repository? (e.g. octocat/Spoon-Knife => Spoon-Knife)'
-  repo_name = gets.chomp
+  repo_name = $stdin.gets.chomp
   puts 'What is the GitHub username for the responder bot?'
-  username = gets.chomp
+  username = $stdin.gets.chomp
   if ENV['RESPONDER_TOKEN'].to_s.size > 0
     token = ENV.fetch('RESPONDER_TOKEN').to_s
   else
