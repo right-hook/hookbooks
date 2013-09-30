@@ -15,7 +15,8 @@ GEM
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
-    right_hook (0.2.0)
+    rake (10.1.0)
+    right_hook (0.3.0)
       httparty (~> 0.11.0)
       octokit (~> 2.2)
       sinatra (~> 1.4)
@@ -32,4 +33,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  right_hook (~> 0.2.0)
+  rake
+  right_hook (~> 0.3.0)
