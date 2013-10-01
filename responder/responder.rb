@@ -15,12 +15,10 @@ class Responder < RightHook::App
   end
 
   def on_pull_request(owner, repo_name, action, number, pull_request_json)
-    RightHook.logger.info("In on_pull_request: #{owner}, #{repo_name}, #{action}, #{number}, #{pull_request_json}")
     comment_like_a_parrot(owner, repo_name, number) if action == 'opened'
   end
 
   def on_issue(owner, repo_name, action, issue_json)
-    RightHook.logger.info("In on_issue: #{owner}, #{repo_name}, #{action}, #{issue_json}")
     comment_like_a_parrot(owner, repo_name, issue_json['number']) if action == 'opened' || action == 'reopened'
   end
 
