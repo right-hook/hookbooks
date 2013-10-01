@@ -1,4 +1,5 @@
 require 'right_hook/app'
+require 'right_hook/commenter'
 require 'right_hook/event'
 require 'right_hook/logger'
 require 'logger'
@@ -8,14 +9,6 @@ RightHook.logger.level = Logger::DEBUG
 
 class Responder < RightHook::App
   enable :logging
-
-  before do
-    content = request.body.read
-    request.body.rewind
-    p content
-    p OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new('sha1'), ENV.fetch('RESPONDER_SECRET'), content)
-    p request.env
-  end
 
   get '/status' do
     'Active'
