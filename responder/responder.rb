@@ -13,6 +13,7 @@ class Responder < RightHook::App
     content = request.body.read
     request.body.rewind
     p content
+    p OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new('sha1'), ENV.fetch('RESPONDER_SECRET'), content)
   end
 
   get '/status' do
