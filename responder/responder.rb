@@ -7,7 +7,11 @@ RightHook.logger = Logger.new(STDERR)
 RightHook.logger.level = Logger::DEBUG
 
 class Responder < RightHook::App
-  set :logging, true
+  enable :logging
+
+  before do
+    p request
+  end
 
   get '/status' do
     'Active'
