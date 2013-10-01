@@ -10,7 +10,9 @@ class Responder < RightHook::App
   enable :logging
 
   before do
-    p request
+    content = request.body.read
+    request.body.rewind
+    p content
   end
 
   get '/status' do
