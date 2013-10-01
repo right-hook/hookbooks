@@ -4,6 +4,7 @@ require 'right_hook/logger'
 require 'logger'
 
 RightHook.logger = Logger.new(STDERR)
+RightHook.logger.level = Logger::DEBUG
 
 class Responder < RightHook::App
   def on_pull_request(owner, repo_name, action, number, pull_request_json)
