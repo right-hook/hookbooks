@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/mark-rushakoff/right_hook.git
-  revision: 78c529b23b2b3857d3bc559ca17d603c71a06ce6
+  revision: 9c7ade352916d5532177728a2d9307cc2990e0a4
   ref: master
   specs:
     right_hook (0.3.2)
