@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-gem 'right_hook', '~> 0.3.2'
+gem 'right_hook', github: 'mark-rushakoff/right_hook', ref: 'master'
 gem 'rake'

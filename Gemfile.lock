@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/mark-rushakoff/right_hook.git
+  revision: c4d0d494e0d85b394d4fbcd2b4d8fd92111a1bf8
+  ref: master
+  specs:
+    right_hook (0.3.2)
+      httparty (~> 0.11.0)
+      octokit (~> 2.2)
+      sinatra (~> 1.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -16,10 +26,6 @@ GEM
     rack-protection (1.5.0)
       rack
     rake (10.1.0)
-    right_hook (0.3.2)
-      httparty (~> 0.11.0)
-      octokit (~> 2.2)
-      sinatra (~> 1.4)
     sawyer (0.5.1)
       addressable (~> 2.3.5)
       faraday (~> 0.8, < 0.10)
@@ -34,4 +40,4 @@ PLATFORMS
 
 DEPENDENCIES
   rake
-  right_hook (~> 0.3.2)
+  right_hook!
